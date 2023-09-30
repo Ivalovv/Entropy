@@ -54,11 +54,15 @@ namespace Entropy
 
         private void button1_Click(object sender, EventArgs e)
         {
-            textBoxEn1.Text = string.Empty;
-            text = textBox1.Text;
+            text = textBox1.Text.ToLower();
 
+            textBoxEn1.Text = string.Empty;
             textBoxEn1.Text = entropyCalculation(ref frequency1, ref text).ToString();
+
+            textBoxEn2.Text = string.Empty;
             textBoxEn2.Text = entropyCalculation(ref frequency2, ref text).ToString();
+
+            textBoxEn3.Text = string.Empty;
             textBoxEn3.Text = entropyCalculation(ref frequency3, ref text).ToString();
         }
 
@@ -76,19 +80,18 @@ namespace Entropy
 
             for (int i = 0; i < (text.Length - (keyLen - 1)); i++)
             {
-                if (frequency.ContainsKey(text.Substring(i, keyLen).ToString()))
+                if (frequency.ContainsKey(text.Substring(i, keyLen)))
                 {
-                    frequency[text.Substring(i, keyLen).ToString()]++;
+                    frequency[text.Substring(i, keyLen)]++;
                     numberLetters++;
                 }
             }
 
             foreach (string key in frequency.Keys.ToList())
             {
-                frequency[key] /= numberLetters;
-
                 if (frequency[key] != 0)
                 {
+                    frequency[key] /= numberLetters;
                     entropy += frequency[key] * Math.Log(1.0f / frequency[key], 2);
                 }
             }
