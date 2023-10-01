@@ -15,7 +15,9 @@ namespace Entropy
     {
         private string text;
 
-        private char[] alphabet;
+        private string[] textArr;
+        private string[] separatingStrings;
+        private string[] alphabet;
 
         private Dictionary<string, double> frequency1 = new Dictionary<string, double>();
         private Dictionary<string, double> frequency2 = new Dictionary<string, double>();
@@ -25,18 +27,20 @@ namespace Entropy
         {
             InitializeComponent();
 
-            alphabet = new char[34] { 'а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я', ' ' };
+            separatingStrings = new string[] { "<<", "...", " ", ",", ".", ":", "\t", "\n" };
+
+            alphabet = new string[34] { "а", "б", "в", "г", "д", "е", "ё", "ж", "з", "и", "й", "к", "л", "м", "н", "о", "п", "р", "с", "т", "у", "ф", "х", "ц", "ч", "ш", "щ", "ъ", "ы", "ь", "э", "ю", "я", " " };
 
             for (int i = 0; i < alphabet.Length; i++)
             {
-                frequency1.Add(alphabet[i].ToString(), 0.0f);
+                frequency1.Add(alphabet[i], 0.0f);
             }
 
             for (int i = 0; i < alphabet.Length - 1; i++)
             {
                 for (int j = 0; j < alphabet.Length - 1; j++)
                 {
-                    frequency2.Add(alphabet[i].ToString() + alphabet[j].ToString(), 0.0f);
+                    frequency2.Add(alphabet[i] + alphabet[j], 0.0f);
                 }
             }
 
@@ -46,7 +50,7 @@ namespace Entropy
                 {
                     for (int k = 0; k < alphabet.Length - 1; k++)
                     {
-                        frequency3.Add(alphabet[i].ToString() + alphabet[j].ToString() + alphabet[k].ToString(), 0.0f);
+                        frequency3.Add(alphabet[i] + alphabet[j] + alphabet[k], 0.0f);
                     }
                 }
             }
@@ -55,6 +59,7 @@ namespace Entropy
         private void button1_Click(object sender, EventArgs e)
         {
             text = textBox1.Text.ToLower();
+            //textArr = text.Split(separatingStrings, System.StringSplitOptions.RemoveEmptyEntries);
 
             textBoxEn1.Text = string.Empty;
             textBoxEn1.Text = entropyCalculation(ref frequency1, ref text).ToString();
