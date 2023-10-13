@@ -19,7 +19,6 @@ namespace Entropy
         private string[] separatingStrings;
         private string[] alphabet;
         
-        
         private Dictionary<string, double> frequency1 = new Dictionary<string, double>();
         private Dictionary<string, double> frequency2 = new Dictionary<string, double>();
         private Dictionary<string, double> frequency3 = new Dictionary<string, double>();
