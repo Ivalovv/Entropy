@@ -1,1 +1,0 @@
--[ ] Charts [apple] (https://developer.apple.com/design/human-interface-guidelines/charts)
