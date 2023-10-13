@@ -59,6 +59,7 @@ namespace Entropy
         private void button1_Click(object sender, EventArgs e)
         {
             text = textBox1.Text.ToLower();
+
             //textArr = text.Split(separatingStrings, System.StringSplitOptions.RemoveEmptyEntries);
 
             textBoxEn1.Text = string.Empty;
