@@ -13,10 +13,10 @@ F:\Program\C#\Windows\University\Entropy\bin\Debug\Entropy.exe
 F:\Program\C#\Windows\University\Entropy\bin\Debug\Entropy.pdb
 F:\Program\C#\Windows\University\Entropy\obj\Debug\Entropy.csproj.AssemblyReference.cache
 F:\Program\C#\Windows\University\Entropy\obj\Debug\Entropy.csproj.SuggestedBindingRedirects.cache
-F:\Program\C#\Windows\University\Entropy\obj\Debug\Entropy.Form1.resources
 F:\Program\C#\Windows\University\Entropy\obj\Debug\Entropy.Properties.Resources.resources
 F:\Program\C#\Windows\University\Entropy\obj\Debug\Entropy.csproj.GenerateResource.cache
 F:\Program\C#\Windows\University\Entropy\obj\Debug\Entropy.csproj.CoreCompileInputs.cache
 F:\Program\C#\Windows\University\Entropy\obj\Debug\Entropy.exe
 F:\Program\C#\Windows\University\Entropy\obj\Debug\Entropy.pdb
 F:\Program\C#\Windows\University\Entropy\obj\Debug\Entropy.Form2.resources
+F:\Program\C#\Windows\University\Entropy\obj\Debug\Entropy.Entropy.resources

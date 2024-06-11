@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
             this.textBoxText = new System.Windows.Forms.TextBox();
             this.buttonEntropyCalculation = new System.Windows.Forms.Button();
             this.numericUpDownNumSelection = new System.Windows.Forms.NumericUpDown();
@@ -208,9 +209,10 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.numericUpDownNumSelection);
             this.Controls.Add(this.buttonEntropyCalculation);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(800, 550);
             this.Name = "Form2";
-            this.Text = "Form2";
+            this.Text = "рпвлоап";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNumSelection)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);

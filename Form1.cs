@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace Entropy
 {
-    public partial class Form1 : Form
+    public partial class Entropy : Form
     {
-        public Form1()
+        public Entropy()
         {
             InitializeComponent();
         }
