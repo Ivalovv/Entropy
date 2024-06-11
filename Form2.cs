@@ -105,7 +105,7 @@ namespace Entropy
                 for (var i = 0; i < numericUpDownNumSelection.Value; i++)
                 {
                     // Добавление строки в DataGridView с числом символов и значением энтропии
-                    dataGridView1.Rows.Add(charSelection+j, entropyCalculation(ref frequency, text.Substring(i * charSelection, charSelection+j)));
+                    dataGridView1.Rows.Add(charSelection + j, entropyCalculation(ref frequency, text.Substring(i * charSelection, charSelection + j)));
                 }
             }
 
@@ -171,7 +171,7 @@ namespace Entropy
 
             // Вычисление количества символов в каждой выборке
             charSelection = numCharText / numSelection;
-            textBoxCharSelection.Text = $"{charSelection}";
+            textBoxCharSelection.Text = $"{charSelection + (numCharText - Convert.ToInt32(charSelection * numericUpDownNumSelection.Value))}";
         }
 
         // Обработчик изменения значения в numericUpDown для количества выборок
@@ -180,33 +180,36 @@ namespace Entropy
             // Обновление количества выборок
             numSelection = Convert.ToInt32(numericUpDownNumSelection.Value);
             charSelection = numCharText / numSelection; // Обновление количества символов в каждой выборке
-            textBoxCharSelection.Text = $"{charSelection}";
+            textBoxCharSelection.Text = $"{charSelection + (numCharText - Convert.ToInt32(charSelection * numericUpDownNumSelection.Value))}";
         }
 
         // Обработчик изменения текста в текстовом поле для количества символов в выборке
         private void textBoxCharSelection_TextChanged(object sender, EventArgs e)
         {
-            // Проверка, является ли введенное значение числом
-            if (int.TryParse(textBoxCharSelection.Text, out int x))
+            if (fInput)
             {
-                buttonEntropyCalculation.Enabled = true; // Включение кнопки, если значение корректное
-                charSelection = Convert.ToInt32(textBoxCharSelection.Text);
-            }
-            else
-            {
-                buttonEntropyCalculation.Enabled = false; // Отключение кнопки, если значение некорректное
-                MessageBox.Show("Число пожалуйста", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                // Проверка, является ли введенное значение числом
+                if (int.TryParse(textBoxCharSelection.Text, out int x))
+                {
+                    buttonEntropyCalculation.Enabled = true; // Включение кнопки, если значение корректное
+                    charSelection = Convert.ToInt32(textBoxCharSelection.Text);
+                }
+                else
+                {
+                    buttonEntropyCalculation.Enabled = false; // Отключение кнопки, если значение некорректное
+                    MessageBox.Show("Число пожалуйста", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
 
-            // Проверка, не превышает ли количество символов в выборке количество символов в тексте
-            if (charSelection > numCharText)
-            {
-                buttonEntropyCalculation.Enabled = false; // Отключение кнопки, если символов слишком много
-                MessageBox.Show("Слишком большое число символов в выборке", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                buttonEntropyCalculation.Enabled = true; // Включение кнопки, если значение допустимое
+                // Проверка, не превышает ли количество символов в выборке количество символов в тексте
+                if (charSelection > numCharText)
+                {
+                    buttonEntropyCalculation.Enabled = false; // Отключение кнопки, если символов слишком много
+                    MessageBox.Show("Слишком большое число символов в выборке", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    buttonEntropyCalculation.Enabled = true; // Включение кнопки, если значение допустимое
+                }
             }
         }
 
@@ -215,7 +218,7 @@ namespace Entropy
         {
             // Автоматический расчет и обновление количества символов в выборке при двойном клике
             charSelection = numCharText / numSelection;
-            textBoxCharSelection.Text = $"{charSelection}";
+            textBoxCharSelection.Text = $"{charSelection + (numCharText - Convert.ToInt32(charSelection * numericUpDownNumSelection.Value))}";
         }
 
         // Обработчик изменения значения в numericUpDown для точности вычислений
@@ -232,7 +235,7 @@ namespace Entropy
             if (!fInput)
             {
                 charSelection = numCharText / numSelection;
-                textBoxCharSelection.Text = $"{charSelection}";
+                textBoxCharSelection.Text = $"{charSelection + (numCharText - Convert.ToInt32(charSelection * numericUpDownNumSelection.Value))}";
 
                 textBoxCharSelection.ReadOnly = true;
             }
