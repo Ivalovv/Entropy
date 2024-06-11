@@ -66,7 +66,7 @@
             this.buttonEntropyCalculation.Name = "buttonEntropyCalculation";
             this.buttonEntropyCalculation.Size = new System.Drawing.Size(86, 49);
             this.buttonEntropyCalculation.TabIndex = 1;
-            this.buttonEntropyCalculation.Text = "button1";
+            this.buttonEntropyCalculation.Text = "Рассчитать";
             this.buttonEntropyCalculation.UseVisualStyleBackColor = true;
             this.buttonEntropyCalculation.Click += new System.EventHandler(this.buttonEntropyCalculation_Click);
             // 
@@ -212,7 +212,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(800, 550);
             this.Name = "Form2";
-            this.Text = "рпвлоап";
+            this.Text = "Энтропия";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNumSelection)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
