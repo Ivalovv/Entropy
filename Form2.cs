@@ -1,14 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Entropy
 {
@@ -16,11 +10,15 @@ namespace Entropy
     {
         // Переменные класса для хранения текста, настроек и результатов
         private string text;
+
         private int accuracy = 6; // Точность вычислений энтропии (количество знаков после запятой)
         private int numSelection = 1; // Количество выборок (групп символов)
         private int numCharText = 0; // Общее количество символов в тексте
         private int charSelection = 0; // Количество символов в каждой выборке
+
         private double avgEntropy = 0; // Средняя энтропия текста
+
+        private bool fInput = false;
 
         // Массив символов алфавита
         private string[] alphabet;
@@ -65,37 +63,49 @@ namespace Entropy
                 dataGridView1.Rows.Clear();
             }
 
-            // Проверка, помещаются ли все символы в выборки
-            if (charSelection * numericUpDownNumSelection.Value <= numCharText)
+            if (fInput)
             {
-                // Если да, то вычисляем остаток символов
+                // Проверка, помещаются ли все символы в выборки
+                if (charSelection * numericUpDownNumSelection.Value <= numCharText)
+                {
+                    // Цикл для создания выборок и расчета энтропии
+                    for (var i = 0; i < numericUpDownNumSelection.Value; i++)
+                    {
+                        // Добавление строки в DataGridView с числом символов и значением энтропии
+                        dataGridView1.Rows.Add(charSelection, entropyCalculation(ref frequency, text.Substring(i * charSelection, charSelection)));
+                    }
+                }
+                else if (charSelection * numericUpDownNumSelection.Value > numCharText)
+                {
+                    // Если количество символов больше длины текста, обрабатываем случай зацикливания
+                    for (int j = 0, i = 0; i < numericUpDownNumSelection.Value; i++, j += charSelection)
+                    {
+                        while (j + charSelection > numCharText)
+                        {
+                            // Переносим начало подстроки на начало текста, если вышли за его пределы
+                            j = (j + charSelection) - numCharText;
+
+                            if (j == numCharText)
+                            {
+                                j -= numCharText; // Если дошли до конца текста, начинаем с начала
+                            }
+                        }
+
+                        // Добавление строки в DataGridView с числом символов и значением энтропии
+                        dataGridView1.Rows.Add(charSelection, entropyCalculation(ref frequency, text.Substring(j, charSelection)));
+                    }
+                }
+            }
+            else
+            {
+                // Вычисляем остаток символов
                 int j = numCharText - Convert.ToInt32(charSelection * numericUpDownNumSelection.Value);
 
                 // Цикл для создания выборок и расчета энтропии
                 for (var i = 0; i < numericUpDownNumSelection.Value; i++)
-                {   
-                    // Добавление строки в DataGridView с числом символов и значением энтропии
-                    dataGridView1.Rows.Add(charSelection + j, entropyCalculation(ref frequency, text.Substring(i * charSelection, charSelection + j)));
-                }
-            }
-            else if (charSelection * numericUpDownNumSelection.Value > numCharText)
-            {
-                // Если количество символов больше длины текста, обрабатываем случай зацикливания
-                for (int j = 0, i = 0; i < numericUpDownNumSelection.Value; i++, j += charSelection)
                 {
-                    while (j + charSelection > numCharText)
-                    {
-                        // Переносим начало подстроки на начало текста, если вышли за его пределы
-                        j = (j + charSelection) - numCharText;
-
-                        if (j == numCharText)
-                        {
-                            j -= numCharText; // Если дошли до конца текста, начинаем с начала
-                        }
-                    }
-
                     // Добавление строки в DataGridView с числом символов и значением энтропии
-                    dataGridView1.Rows.Add(charSelection, entropyCalculation(ref frequency, text.Substring(j, charSelection)));
+                    dataGridView1.Rows.Add(charSelection+j, entropyCalculation(ref frequency, text.Substring(i * charSelection, charSelection+j)));
                 }
             }
 
@@ -213,6 +223,23 @@ namespace Entropy
         {
             // Обновление точности вычислений энтропии
             accuracy = Convert.ToInt32(numericUpDownAccuracy.Value);
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            fInput = !fInput;
+
+            if (!fInput)
+            {
+                charSelection = numCharText / numSelection;
+                textBoxCharSelection.Text = $"{charSelection}";
+
+                textBoxCharSelection.ReadOnly = true;
+            }
+            else
+            {
+                textBoxCharSelection.ReadOnly = false;
+            }
         }
     }
 }

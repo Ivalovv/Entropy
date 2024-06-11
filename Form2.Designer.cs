@@ -41,6 +41,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.numericUpDownAccuracy = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNumSelection)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -155,6 +156,7 @@
             this.textBoxCharSelection.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.textBoxCharSelection.Location = new System.Drawing.Point(124, 479);
             this.textBoxCharSelection.Name = "textBoxCharSelection";
+            this.textBoxCharSelection.ReadOnly = true;
             this.textBoxCharSelection.Size = new System.Drawing.Size(99, 20);
             this.textBoxCharSelection.TabIndex = 7;
             this.textBoxCharSelection.TextChanged += new System.EventHandler(this.textBoxCharSelection_TextChanged);
@@ -194,11 +196,24 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "Точность";
             // 
+            // checkBox1
+            // 
+            this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(229, 482);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(88, 17);
+            this.checkBox1.TabIndex = 9;
+            this.checkBox1.Text = "Ручной ввод";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 511);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.numericUpDownAccuracy);
             this.Controls.Add(this.textBoxCharSelection);
             this.Controls.Add(this.label3);
@@ -237,5 +252,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown numericUpDownAccuracy;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
